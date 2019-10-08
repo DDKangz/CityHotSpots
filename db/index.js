@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/hotspots');
 
 const db = mongoose.connection;
+mongoose.connect('mongodb://localhost/hotspots', {useNewUrlParser: true});
 
 db.on('error', () => {
   console.log('mongoose connection error');
@@ -11,4 +11,17 @@ db.once('open', () => {
   console.log('mongoose connected successfully');
 });
 
-module.exports = db;
+const hotspotSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  votes: Number,
+  image: String,
+  tags: String,
+  city: String,
+});
+
+const HotSpots = mongoose.model('hotspots', hotspotSchema);
+
+module.exports = {
+  HotSpots: HotSpots
+}

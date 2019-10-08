@@ -1,28 +1,34 @@
 import React from 'react';
 import axios from 'axios';
 import fakeData from '../../../fakeData.js';
-import HotSpotsList from './HotSpotsList.jsx';
-console.log(fakeData);
+import CityHotSpotsForm from './CityForm.jsx';
+import styled from 'styled-components';
+
+const MainHeader = styled.h1`
+  font-size: 40px;
+  font-weight: 800;
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+`;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotSpots : []
+      page: 'form',
     }
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     //code
-  }
+  // }
+
 
   render() {
     return (
       <div>
-        <h1>HOTSPOTS!</h1>
-        <div>{fakeData.map((hotSpot) => {
-          return <HotSpotsList hotSpot={hotSpot}/>;
-        })}</div>
+        <MainHeader>HOTSPOTS!</MainHeader>
+        <CityHotSpotsForm />
       </div>
     )
   }
